@@ -1,0 +1,62 @@
+# Sobe a plataforma inteira localmente: PostgreSQL + API + front.
+#
+#   docker compose up --build
+#
+# Front: http://localhost:5180   API: http://localhost:4460/api/health
+# Contas de demonstração (criadas na subida): veja o README.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gestao_360
+      TZ: UTC
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d gestao_360"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 4460
+      TZ: America/Sao_Paulo
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: gestao_360
+      FRONTEND_URL: http://localhost:5180
+      JWT_SECRET: segredo-local-somente-para-demonstracao-0001
+      JWT_REFRESH_SECRET: segredo-local-somente-para-demonstracao-0002
+      # Opcional: cole a sua chave para ligar a IA (diagnóstico, plano e suporte).
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    # Cria as tabelas, as contas de demonstração e a base de conhecimento, e
+    # sobe a API.
+    command: >
+      sh -c "node src/server/init-db.js &&
+             node scripts/criar-contas-de-teste.js &&
+             node scripts/carregar-base.js &&
+             node src/app.js"
+    ports:
+      - "4460:4460"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "5180:3000"
+
+volumes:
+  db-data:

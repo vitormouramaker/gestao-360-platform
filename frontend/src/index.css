@@ -1,0 +1,418 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --animate-shimmer: shimmer 2s linear infinite;
+  --g360-safe-top: env(safe-area-inset-top, 0px);
+  --g360-safe-right: env(safe-area-inset-right, 0px);
+  --g360-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --g360-safe-left: env(safe-area-inset-left, 0px);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*
+ * A identidade muda com o plano: Essencial é claro com azul-marinho, Premium é
+ * preto. O verde é o mesmo nos dois.
+ */
+:root {
+  --bg-app: #f5f7f8;
+  --bg-app-accent: #e4f2ee;
+  --bg-surface: #ffffff;
+  --bg-surface-soft: rgba(255, 255, 255, 0.78);
+  --bg-surface-muted: #ebeff2;
+  --bg-sidebar: #132b40;
+  --bg-header: rgba(245, 247, 248, 0.86);
+  --bg-elevated: #ffffff;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.74);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-hover: rgba(255, 255, 255, 0.08);
+  --primary: #159b7b;
+  --primary-hover: #118468;
+  --primary-text: #0f7a61;
+  --text-main: #132b40;
+  --text-muted: #667580;
+  --text-soft: #8a959e;
+  --border-subtle: #dde3e8;
+  --border-strong: #c3ccd3;
+  --art-base: #132b40;
+  --art-mid: #1c4a5a;
+  --art-light: #dfe7ec;
+  --shadow-soft: 0 18px 50px rgba(19, 43, 64, 0.08);
+  --shadow-elevated: 0 20px 40px rgba(19, 43, 64, 0.14);
+}
+
+html[data-plan="premium"] {
+  --bg-app: #111111;
+  --bg-app-accent: #16201d;
+  --bg-surface: #181818;
+  --bg-surface-soft: rgba(24, 24, 24, 0.86);
+  --bg-surface-muted: #202020;
+  --bg-sidebar: #141414;
+  --bg-header: rgba(17, 17, 17, 0.9);
+  --bg-elevated: #1c1c1c;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.72);
+  --sidebar-border: #262626;
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --primary: #159b7b;
+  --primary-hover: #1bb18d;
+  --primary-text: #3fcfab;
+  --text-main: #ffffff;
+  --text-muted: #a8adb2;
+  --text-soft: #7f858a;
+  --border-subtle: #2a2a2a;
+  --border-strong: #3a3a3a;
+  --art-base: #0a0a0a;
+  --art-mid: #4a4a4a;
+  --art-light: #e6e6e6;
+  --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.34);
+  --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+  background-color: var(--bg-app);
+}
+
+body {
+  margin: 0;
+  color: var(--text-main);
+  font-family:
+    "Plus Jakarta Sans",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Montserrat", "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.g360-brand-font {
+  font-family: "Montserrat", "Plus Jakarta Sans", sans-serif;
+}
+
+.g360-sidebar {
+  background: var(--bg-sidebar);
+  border-color: var(--sidebar-border);
+  color: var(--sidebar-text);
+}
+
+.g360-app-header {
+  background: var(--bg-header);
+  border-color: var(--border-subtle);
+}
+
+.g360-theme-overlay {
+  background: rgba(10, 18, 26, 0.55);
+}
+
+html[data-plan="premium"] .g360-theme-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.g360-safe-bottom {
+  margin-bottom: var(--g360-safe-bottom);
+}
+
+.g360-ui-input {
+  border-color: var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--text-main);
+}
+
+.g360-ui-input::placeholder {
+  color: var(--text-soft);
+}
+
+.g360-ui-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 18%, transparent);
+}
+
+.g360-auth-screen {
+  background:
+    radial-gradient(
+      circle at top,
+      color-mix(in srgb, var(--bg-app-accent) 90%, transparent) 0%,
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      color-mix(in srgb, var(--primary) 12%, transparent) 0%,
+      transparent 28%
+    ),
+    var(--bg-app);
+}
+
+.g360-auth-card {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-elevated);
+}
+
+.g360-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--bg-surface-muted) 82%, transparent);
+}
+
+.g360-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, white 14%, transparent) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* Cards dos entregáveis: a arte sobe de leve quando o card está liberado. */
+.g360-product-card .g360-product-art {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.g360-product-card:not([data-locked="true"]):hover .g360-product-art {
+  transform: scale(1.05);
+}
+
+/* Carrossel: rola de lado sem mostrar a barra. */
+.g360-carousel-track {
+  scrollbar-width: none;
+}
+
+.g360-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes g360-modal-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.g360-modal-in {
+  animation: g360-modal-in 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+
+/* Toasts: entrada pela direita, saida de volta pra direita e barra de tempo. */
+@keyframes g360-toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(16px, -6px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes g360-toast-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    max-height: 16rem;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0) scale(0.96);
+    max-height: 0;
+  }
+}
+
+@keyframes g360-toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.g360-toast-in {
+  animation-name: g360-toast-in;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+.g360-toast-out {
+  animation-name: g360-toast-out;
+  animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  animation-fill-mode: forwards;
+}
+
+.g360-toast-progress {
+  animation-name: g360-toast-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/*
+ * Foco de teclado visível em qualquer elemento interativo. Só aparece para
+ * quem navega por Tab (focus-visible), então o clique do mouse continua sem
+ * contorno.
+ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[role="menuitem"]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Sem contorno no clique: o foco visível fica só para o teclado. */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+[tabindex]:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/*
+ * Impressão / "Salvar como PDF" do Diagnóstico 360°: sai só o documento, em
+ * fundo claro, mesmo para quem usa a identidade escura do Premium.
+ */
+@media print {
+  html,
+  html[data-plan="premium"] {
+    --bg-app: #ffffff;
+    --bg-surface: #ffffff;
+    --bg-surface-muted: #ebeff2;
+    --bg-elevated: #ffffff;
+    --primary: #159b7b;
+    --primary-text: #0f7a61;
+    --text-main: #132b40;
+    --text-muted: #667580;
+    --border-subtle: #dde3e8;
+    --border-strong: #c3ccd3;
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  #app {
+    background: #ffffff !important;
+  }
+
+  .g360-no-print {
+    display: none !important;
+  }
+
+  /* A moldura do app tem altura fixa e rolagem interna: no papel ela se abre. */
+  .g360-print-root,
+  .g360-print-root main {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding-bottom: 0 !important;
+  }
+
+  .g360-print-avoid-break {
+    break-inside: avoid;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /*
+   * Ingresso do evento: com a janela "Meu ingresso" aberta (classe posta no
+   * <html> por ela), sai só a cópia de impressão, centralizada. O app, o fundo
+   * escurecido e a própria janela ficam de fora. Sem a classe, nada muda.
+   */
+  html.g360-printing-ticket body > :not(.g360-ticket-print) {
+    display: none !important;
+  }
+
+  html.g360-printing-ticket .g360-ticket-print {
+    display: block;
+    max-width: 24rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+  }
+
+  /*
+   * Plano de ação: com a sobreposição de visualização aberta (classe no <html>),
+   * o PDF sai só com o documento do plano; o app atrás e a barra de botões
+   * (g360-no-print) ficam de fora. Sem a classe, nada muda.
+   */
+  html.g360-printing-plan body > :not(.g360-plan-print) {
+    display: none !important;
+  }
+
+  html.g360-printing-plan .g360-plan-print {
+    position: static !important;
+    inset: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+}
+
+/* A cópia de impressão do ingresso não aparece na tela. */
+.g360-ticket-print {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
