@@ -4,7 +4,7 @@ Plataforma web completa para um programa de gestão por assinatura voltado a don
 
 Por trás disso há um painel administrativo completo, integração de pagamentos por webhook, provisionamento automático de acesso em plataformas parceiras, ingressos com QR code para eventos presenciais, e-mails transacionais com rastreio de abertura e controle de custo da IA.
 
-> **Sobre esta versão.** Este repositório é uma versão **anonimizada** de um sistema que construí e que roda em produção para uma empresa de educação executiva. Nome, marca, domínios, metodologia, prompts, base de conhecimento, textos legais, preços e dados de clientes foram trocados por conteúdo fictício. A arquitetura, as regras de negócio e o código são os do sistema real.
+> **Sobre esta versão.** Este repositório é uma versão **anonimizada** de um sistema real que desenvolvi para uma empresa. Nome, marca, domínios, metodologia, prompts, base de conhecimento, textos legais, preços e dados de clientes foram trocados por conteúdo fictício. A arquitetura, as regras de negócio e o código são os do sistema real.
 
 **English summary:** Full-stack subscription platform (React 19 + TypeScript + Vite / Node.js + Express 5 + PostgreSQL) for a business-management program. An AI agent (Anthropic Claude, structured outputs validated with Zod, prompt caching) drafts each client's diagnosis and action plan from a scored questionnaire. The team reviews and publishes it in an admin panel. Also includes an AI support chat with human handoff, payment webhooks (Hubla), background provisioning queues for partner platforms, QR-code event tickets, transactional e-mail with open tracking, role-based admin permissions and AI cost tracking. Runs locally with one `docker compose up`.
 
