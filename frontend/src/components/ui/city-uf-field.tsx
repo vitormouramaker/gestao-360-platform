@@ -11,8 +11,8 @@ const UFS = [
 ];
 
 /**
- * Separa "Teresina/PI" em cidade e UF. Textos antigos, digitados à mão
- * ("Teresina - PI", "Teresina, PI"), também são entendidos; sem UF reconhecida,
+ * Separa "Campinas/SP" em cidade e UF. Textos antigos, digitados à mão
+ * ("Campinas - SP", "Campinas, SP"), também são entendidos; sem UF reconhecida,
  * o texto inteiro fica como cidade.
  */
 export function parseCityUf(value: string) {
@@ -82,7 +82,7 @@ interface CityUfFieldProps {
 }
 
 /**
- * Cidade e UF em dois seletores, guardados como um texto só ("Teresina/PI").
+ * Cidade e UF em dois seletores, guardados como um texto só ("Campinas/SP").
  * As cidades vêm da lista guardada no 360 (com a API do IBGE de reserva); se
  * nenhuma responder a tempo, a cidade vira campo de texto para o formulário
  * nunca travar.

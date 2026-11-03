@@ -25,7 +25,7 @@ interface AnamnesePageProps {
 // Espera a pessoa parar de digitar antes de salvar o rascunho.
 const AUTOSAVE_DELAY_MS = 1200;
 
-// Pergunta "Cidade/UF" da Matriz: continua um texto só ("Teresina/PI"), mas é
+// Pergunta "Cidade/UF" da Matriz: continua um texto só ("Campinas/SP"), mas é
 // respondida em dois seletores. Os ids da Matriz não mudam.
 const CITY_QUESTION_ID = "q04";
 
